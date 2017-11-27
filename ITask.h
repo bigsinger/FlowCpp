@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Log.h"
 #include <time.h>
 
@@ -12,12 +12,12 @@ public:
 	}
 	void Work() {
 		time_t start, end; time(&start);
-		g_log.Log("¿ªÊ¼Ö´ÐÐ: [%s]", this->GetName().c_str());
+		g_log.Log("å¼€å§‹æ‰§è¡Œ: [%s]", this->GetName().c_str());
 		this->OnBeforeWork();;
 		this->OnWork();
 		this->OnAfterWork();;
 		time(&end);
-		g_log.Log("Ö´ÐÐÍê³É: [%s] ºÄÊ±: %.2lf s", this->GetName().c_str(), difftime(end, start));
+		g_log.Log("æ‰§è¡Œå®Œæˆ: [%s] è€—æ—¶: %.2lf s", this->GetName().c_str(), difftime(end, start));
 	}
 	 void Release() {
 		this->OnRelease();
