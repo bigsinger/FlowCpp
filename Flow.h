@@ -9,11 +9,11 @@
 */
 
 
-class CEngine
+class CFlow
 {
 public:
-	CEngine();
-	~CEngine();
+	CFlow();
+	~CFlow();
 public:
 	//添加一个准备任务，注意step相同的任务会被一起异步执行，如果想同步顺序执行，请设置不同的step。
 	void AddPrePareTask(ITaskPtr pTask, int nStep = -1);
