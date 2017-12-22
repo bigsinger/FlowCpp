@@ -51,7 +51,7 @@ void CFlow::Work() {
 	LOG("执行工作任务...");
 	if (m_mapWorkTasks.empty() == false) {
 		time_t start, end; time(&start);
-		this->ExecuteTasks(m_mapWorkTasks);
+		this->RunTasks(m_mapWorkTasks);
 		time(&end);
 		LOG("工作任务完成, 耗时: %.2lf s", difftime(end, start));
 	} else {
@@ -61,22 +61,13 @@ void CFlow::Work() {
 	LOG("-------------------------------\n");
 }
 
-void CFlow::Init() {
+void CFlow::Prepare() {
 	LOG("-------------------------------");
 	LOG("%s Begin", __FUNCTION__);
 	LOG("执行准备任务...");
 	if (m_mapPrePareTasks.empty() == false) {
 		time_t start, end; time(&start);
-		this->ExecuteTasks(m_mapPrePareTasks);
-		time(&end);
-		LOG("准备任务完成, 耗时: %.2lf s", difftime(end, start));
-	} else {
-		LOG("当前工作没有准备任务.");
-	}
-
-	if (m_mapPrePareTasks.empty() == false) {
-		time_t start, end; time(&start);
-		this->ExecuteTasks(m_mapPrePareTasks);
+		this->RunTasks(m_mapPrePareTasks);
 		time(&end);
 		LOG("准备任务完成, 耗时: %.2lf s", difftime(end, start));
 	} else {
@@ -92,7 +83,7 @@ void CFlow::Release() {
 	LOG("执行收尾任务...");
 	if (m_mapCleanTasks.empty()==false) {
 		time_t start, end; time(&start);
-		this->ExecuteTasks(m_mapCleanTasks);
+		this->RunTasks(m_mapCleanTasks);
 		time(&end);
 		LOG("收尾任务完成, 耗时: %.2lf s", difftime(end, start));
 	} else {
@@ -137,7 +128,7 @@ void CFlow::ThreadWork(ITaskPtr pTask) {
 	pTask->Work();
 }
 
-void CFlow::ExecuteTasks(const map<int, list<ITaskPtr>*>&mapTasks) 	{
+void CFlow::RunTasks(const map<int, list<ITaskPtr>*>&mapTasks) 	{
 	for (auto i : mapTasks) {
 		time_t start, end;
 		time(&start);

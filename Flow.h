@@ -25,7 +25,7 @@ public:
 	void AddCleanTask(ITaskPtr pTask, int nStep = -1);
 
 	//引擎初始化，如果有准备任务则执行它们，step相同的则一起异步执行，否则先后执行。
-	void Init();
+	void Prepare();
 	
 	//工作：执行工作任务。step相同的则一起异步执行，否则先后执行。
 	void Work();
@@ -34,7 +34,7 @@ public:
 	void Release();
 
 private:
-	void ExecuteTasks(const map<int, list<ITaskPtr>*>&mapTasks);
+	void RunTasks(const map<int, list<ITaskPtr>*>&mapTasks);
 	void ThreadWork(ITaskPtr pTask);
 
 private:
